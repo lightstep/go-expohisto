@@ -65,15 +65,16 @@ func NewMapping(scale int32) (mapping.Mapping, error) {
 }
 
 // minNormalLowerBoundaryIndex is the largest index such that
-// base**index is <= MinValue.  A histogram bucket with this index
-// covers the range (base**index, base**(index+1)], including
-// MinValue.
+// base**index is < MinValue and base**(index+1) is >= MinValue.  A
+// histogram bucket with this index covers the range (base**index,
+// base**(index+1)], including MinValue.  This is the smallest
+// valid index that contains at least one normal value.
 func (e *exponentMapping) minNormalLowerBoundaryIndex() int32 {
 	idx := int32(internal.MinNormalExponent) >> e.shift
 	if e.shift < 2 {
-		// For scales -1 and 0 the minimum value 2**-1022
-		// is a power-of-two multiple, meaning it belongs
-		// to the index one less.
+		// For scales -1 and 0 the minimum value 2**-1022 is a
+		// power-of-two multiple, meaning base**index ==
+		// MinValue. Subtract 1 so that base**(index+1) == MinValue
 		idx--
 	}
 	return idx
