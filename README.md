@@ -6,7 +6,7 @@ This is a fixed-size data structure for aggregating the OpenTelemetry
 base-2 exponential histogram introduced in [OTEP
 149](https://github.com/open-telemetry/oteps/blob/main/text/0149-exponential-histogram.md)
 and [described in the metrics data
-model](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/datamodel.md#exponentialhistogram).
+model](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/data-model.md#exponentialhistogram).
 The exponential histogram data point is characterized by a `scale`
 factor that determines resolution.  Positive scales correspond with
 more resolution, and negatives scales correspond with less resolution.
